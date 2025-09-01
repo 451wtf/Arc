@@ -40,7 +40,7 @@ git push -u origin "$branch"
 # Create a pull request using GitHub CLI (default target: main)
 if command -v gh >/dev/null 2>&1; then
     echo "Creating pull request on GitHub..."
-    gh pr create --base main --head "$branch" --title "$message" --body "Auto-created PR from push.sh"
+    gh pr create --base main --head "$branch" --title "$message" --body "$message\nAuto-created PR from push.sh"
 else
     echo "GitHub CLI (gh) not installed. Skipping pull request creation."
 fi
