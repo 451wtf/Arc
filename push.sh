@@ -28,7 +28,7 @@ fi
 git add .
 
 # Commit with the provided message
-git commit -m "$message"
+git commit -m "$message\n\nPushed using push.sh"
 
 # Push to origin (creates branch remotely if it doesn't exist)
 git push -u origin "$branch"
