@@ -1,0 +1,42 @@
+### **The Runtime License (RTL) v1.0**
+
+**Copyright (c) 2025 Reprivatize. All rights reserved.**
+
+**Preamble**
+This license grants free use of the associated software runtime under terms that allow for integration into private works, while ensuring that improvements to the runtime itself remain open and available to the community.
+
+**1. Definitions**
+
+*   **"License"** refers to this Runtime License document.
+*   **"Licensor"** refers the copyright owner or entity authorizing use under this License.
+*   ****"Runtime"** ** refers to the original licensed software, its components, and any subsequent modifications or derivatives covered under this License. This includes but is not limited to interpreters, compilers, virtual machines, core libraries, and standard libraries distributed as a unit for the purpose of executing programs.
+*   **"Independent Work"** refers to software or other works that are combined with the Runtime but are not inherently derivatives of the Runtime. This is typically the application code written by a user to be executed by the Runtime.
+*   **"Source Code"** refers to the preferred form for making modifications to the Runtime.
+*   **"Compiled Binary"** refers to the machine-executable, obfuscated, or intermediate form resulting from the transformation of Source Code.
+
+**2. Grant of Rights**
+
+*   **a. Use & Distribution:** You are granted a worldwide, royalty-free, non-exclusive license to use, copy, and distribute the Runtime in its **unmodified** form, in both Source Code and Compiled Binary form.
+*   **b. Static/ Dynamic Linking:** You are granted the right to integrate the Runtime (in Compiled Binary form) into a larger Independent Work, and to distribute the combined work as a single, compiled application without the obligation to disclose the Source Code of the Independent Work.
+
+**3. Copyleft Provision (The "Publish What You Change" Clause)**
+
+The rights granted in Section 2 are conditional upon your compliance with this section. If you modify the Runtime or create a derivative work based on the Runtime (a **"Modified Runtime"**), you must make the entire Source Code of your Modified Runtime publicly available under this same License. This obligation applies to any distribution of your Modified Runtime, whether in Source Code or Compiled Binary form.
+
+**4. Conditions and Limitations**
+
+*   **a.** You must retain all copyright, patent, trademark, and attribution notices present in the original Runtime.
+*   **b.** Any distribution of the Runtime or a Modified Runtime must include a copy of this License.
+*   **c.** You may not impose any further restrictions on the recipients' exercise of the rights granted herein. You may not sublicense the Runtime except as part of a Larger Work under the terms of Section 2.b.
+
+**5. No Warranty**
+
+The Runtime is provided on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied, including, without limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. You are solely responsible for determining the appropriateness of using or redistributing the Runtime and assume any risks associated with Your exercise of permissions under this License.
+
+**6. Limitation of Liability**
+
+In no event and under no legal theory, whether in tort (including negligence), contract, or otherwise, unless required by applicable law (such as deliberate and grossly negligent acts) or agreed to in writing, shall any Licensor be liable to You for damages, including any direct, indirect, special, incidental, or consequential damages of any character arising out of or in connection with this License or the use or inability to use the Runtime (including but not limited to loss of data, data being rendered inaccurate, or losses sustained by You or third parties), even if the Licensor has been advised of the possibility of such damages.
+
+**7. Termination**
+
+Your rights under this License will terminate automatically if you fail to comply with any of its terms. Upon termination, you must cease all use and distribution of the Runtime, but the requirements of Sections 5, 6, and this Section 7 will survive.
