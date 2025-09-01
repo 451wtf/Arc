@@ -17,10 +17,10 @@ else
     # Check if branch exists on remote
     if git ls-remote --exit-code --heads origin "$branch" >/dev/null; then
         echo "Branch exists on remote. Checking out."
-        git switch -b "$branch" origin/"$branch"
+        git switch "$branch" origin/"$branch"
     else
         echo "Branch does not exist. Creating locally and on remote."
-        git switch -b "$branch"
+        git switch "$branch"
     fi
 fi
 
@@ -33,6 +33,14 @@ git commit -m "$message" -m "" -m "Pushed using push.sh"
 # Push to origin (creates branch remotely if it doesn't exist)
 git push -u origin "$branch"
 
+# Create a pull request using GitHub CLI (default target: main)
+if command -v gh >/dev/null 2>&1; then
+    echo "Creating pull request on GitHub..."
+    gh pr create --base main --head "$branch" --title "$message" --body "Auto-created PR from push.sh"
+else
+    echo "GitHub CLI (gh) not installed. Skipping pull request creation."
+fi
+
 # Switch back to main and update
-git switch -b main
+git switch main
 git pull
