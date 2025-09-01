@@ -12,15 +12,15 @@ git pull
 # Check if branch exists locally
 if git show-ref --verify --quiet refs/heads/"$branch"; then
     echo "Switching to existing local branch '$branch'."
-    git checkout "$branch"
+    git switch "$branch"
 else
     # Check if branch exists on remote
     if git ls-remote --exit-code --heads origin "$branch" >/dev/null; then
         echo "Branch exists on remote. Checking out."
-        git checkout -b "$branch" origin/"$branch"
+        git switch -b "$branch" origin/"$branch"
     else
         echo "Branch does not exist. Creating locally and on remote."
-        git checkout -b "$branch"
+        git switch -b "$branch"
     fi
 fi
 
