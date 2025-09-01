@@ -17,18 +17,22 @@ else
     # Check if branch exists on remote
     if git ls-remote --exit-code --heads origin "$branch" >/dev/null; then
         echo "Branch exists on remote. Checking out."
-        git switch "$branch" origin/"$branch"
+        git switch -c "$branch" origin/"$branch"
     else
         echo "Branch does not exist. Creating locally and on remote."
-        git switch "$branch"
+        git switch -c "$branch"
     fi
 fi
 
 # Add all changes
 git add .
 
-# Commit with the provided message
-git commit -m "$message" -m "" -m "Pushed using push.sh"
+# Commit with the provided message (skip empty commits)
+if ! git diff --cached --quiet; then
+    git commit -m "$message" -m "" -m "Pushed using push.sh"
+else
+    echo "No changes to commit."
+fi
 
 # Push to origin (creates branch remotely if it doesn't exist)
 git push -u origin "$branch"
