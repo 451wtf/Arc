@@ -3,6 +3,45 @@ const TokenType = @import("tokens.zig").TokenType;
 const Token = @import("tokens.zig").Token;
 const Allocator = std.mem.Allocator;
 
+const keywords = std.StaticStringMap(TokenType).initComptime(.{
+    .{ "const", .kw_const },
+    .{ "let", .kw_let },
+    .{ "var", .kw_var },
+    .{ "if", .kw_if },
+    .{ "else", .kw_else },
+    .{ "while", .kw_while },
+    .{ "for", .kw_for },
+    .{ "return", .kw_return },
+    .{ "fun", .kw_fun },
+    .{ "process", .kw_process },
+    .{ "message", .kw_message },
+    .{ "impl", .impl },
+    .{ "spawn", .kw_spawn },
+    .{ "bool", .kw_bool },
+    .{ "self", .identifier },
+    .{ "import", .kw_import },
+    .{ "as", .kw_as },
+    .{ "in", .kw_in },
+    .{ "struct", .kw_struct },
+    .{ "enum", .kw_enum },
+    .{ "union", .kw_union },
+    .{ "trait", .kw_trait },
+    .{ "match", .kw_match },
+    .{ "mut", .kw_mut },
+    .{ "str8", .kw_str },
+    .{ "strA", .kw_strA },
+    .{ "str16", .kw_str16 },
+    .{ "str32", .kw_str32 },
+    .{ "stringA", .kw_stringA },
+    .{ "string", .kw_string },
+    .{ "string16", .kw_string16 },
+    .{ "string32", .kw_string32 },
+    .{ "generic", .kw_generic },
+    .{ "typealias", .kw_typealias },
+    .{ "true", .lit_bool },
+    .{ "false", .lit_bool },
+});
+
 const Lexer = struct {
     input: []const u8,
     position: usize, // Index of input str
@@ -98,82 +137,8 @@ const Lexer = struct {
                 break;
             }
         }
-
-        // Check for keywords
         const text = self.input[start_pos..self.position];
-        if (std.mem.eql(u8, text, "const")) {
-            return self.make_token(.kw_const, start_pos);
-        } else if (std.mem.eql(u8, text, "let")) {
-            return self.make_token(.kw_let, start_pos);
-        } else if (std.mem.eql(u8, text, "var")) {
-            return self.make_token(.kw_var, start_pos);
-        } else if (std.mem.eql(u8, text, "if")) {
-            return self.make_token(.kw_if, start_pos);
-        } else if (std.mem.eql(u8, text, "else")) {
-            return self.make_token(.kw_else, start_pos);
-        } else if (std.mem.eql(u8, text, "while")) {
-            return self.make_token(.kw_while, start_pos);
-        } else if (std.mem.eql(u8, text, "for")) {
-            return self.make_token(.kw_for, start_pos);
-        } else if (std.mem.eql(u8, text, "return")) {
-            return self.make_token(.kw_return, start_pos);
-        } else if (std.mem.eql(u8, text, "fun")) {
-            return self.make_token(.kw_fun, start_pos);
-        } else if (std.mem.eql(u8, text, "process")) {
-            return self.make_token(.kw_process, start_pos);
-        } else if (std.mem.eql(u8, text, "message")) {
-            return self.make_token(.kw_message, start_pos);
-        } else if (std.mem.eql(u8, text, "impl")) {
-            return self.make_token(.impl, start_pos);
-        } else if (std.mem.eql(u8, text, "spawn")) {
-            return self.make_token(.kw_spawn, start_pos);
-        } else if (std.mem.eql(u8, text, "bool")) {
-            return self.make_token(.kw_bool, start_pos);
-        } else if (std.mem.eql(u8, text, "self")) {
-            return self.make_token(.identifier, start_pos);
-        } else if (std.mem.eql(u8, text, "import")) {
-            return self.make_token(.kw_import, start_pos);
-        } else if (std.mem.eql(u8, text, "as")) {
-            return self.make_token(.kw_as, start_pos);
-        } else if (std.mem.eql(u8, text, "in")) {
-            return self.make_token(.kw_in, start_pos);
-        } else if (std.mem.eql(u8, text, "struct")) {
-            return self.make_token(.kw_struct, start_pos);
-        } else if (std.mem.eql(u8, text, "enum")) {
-            return self.make_token(.kw_enum, start_pos);
-        } else if (std.mem.eql(u8, text, "union")) {
-            return self.make_token(.kw_union, start_pos);
-        } else if (std.mem.eql(u8, text, "trait")) {
-            return self.make_token(.kw_trait, start_pos);
-        } else if (std.mem.eql(u8, text, "match")) {
-            return self.make_token(.kw_match, start_pos);
-        } else if (std.mem.eql(u8, text, "mut")) {
-            return self.make_token(.kw_mut, start_pos);
-        } else if (std.mem.eql(u8, text, "str8")) {
-            return self.make_token(.kw_str, start_pos);
-        } else if (std.mem.eql(u8, text, "strA")) {
-            return self.make_token(.kw_strA, start_pos);
-        } else if (std.mem.eql(u8, text, "str16")) {
-            return self.make_token(.kw_str16, start_pos);
-        } else if (std.mem.eql(u8, text, "str32")) {
-            return self.make_token(.kw_str32, start_pos);
-        } else if (std.mem.eql(u8, text, "stringA")) {
-            return self.make_token(.kw_stringA, start_pos);
-        } else if (std.mem.eql(u8, text, "string")) {
-            return self.make_token(.kw_string, start_pos);
-        } else if (std.mem.eql(u8, text, "string16")) {
-            return self.make_token(.kw_string16, start_pos);
-        } else if (std.mem.eql(u8, text, "string32")) {
-            return self.make_token(.kw_string32, start_pos);
-        } else if (std.mem.eql(u8, text, "generic")) {
-            return self.make_token(.kw_generic, start_pos);
-        } else if (std.mem.eql(u8, text, "typealias")) {
-            return self.make_token(.kw_typealias, start_pos);
-        } else if (std.mem.eql(u8, text, "true") or std.mem.eql(u8, text, "false")) {
-            return self.make_token(.lit_bool, start_pos);
-        } else {
-            return self.make_token(.identifier, start_pos);
-        }
+        return self.make_token(keywords.get(text) orelse .identifier, start_pos);
     }
 
     fn next_token(self: *Lexer) Token {
