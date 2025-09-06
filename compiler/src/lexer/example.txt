@@ -1,5 +1,16 @@
+<<<<<<< HEAD
 while (i < 5) {
     println(i);
     i = i + 1;
     fun add(x: i32) -> i32 {}
 }
+=======
+let x: i32 = 5
+x = 10
+
+var y: i32 = 15
+y = 20
+
+let &z: i32 = y
+z = 25
+>>>>>>> a73f317 (Syntax analysis added)
